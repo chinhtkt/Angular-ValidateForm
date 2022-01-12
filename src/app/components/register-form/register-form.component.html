@@ -60,7 +60,7 @@
                         <span *ngIf="f['gender'].errors?.['required']">Gender is required</span>
                     </div>
                 </div>
-                <div *ngIf="allowDisplayMale" class="field">
+                <!-- <div *ngIf="allowDisplayMale" class="field">
                     <label class="label">Male Input</label>
                     <div class="control">
                         <input class="input" type="text" placeholder="Enter Username" name="inputMale"
@@ -70,9 +70,20 @@
                         *ngIf="f['inputMale'].invalid &&  f['inputMale'].touched">
                         <span *ngIf="f['inputMale'].errors?.['required']">Field is required</span>
                     </div>
+                </div> -->
+                <div *ngIf="allowDisplayMale" class="field">
+                    <label class="label">Male Input</label>
+                    <div class="control">
+                        <input class="input" type="inputMale" placeholder="Enter Username" name="inputMale"
+                            formControlName="inputMale">
+                    </div>
+                    <div style="color:red" class="control mt-1"
+                        *ngIf="f['inputMale'].invalid &&  f['inputMale'].touched">
+                        <span *ngIf="f['inputMale'].errors?.['required']">Field is required</span>
+                    </div>
                 </div>
                 <div *ngIf="allowDisplayFemale" class="field">
-                    <label class="label">Female Input</label>
+                    <label class="label">Gender Input</label>
                     <div class="control">
                         <input class="input" type="inputFemale" placeholder="Enter Username" name="inputFemale"
                             formControlName="inputFemale">

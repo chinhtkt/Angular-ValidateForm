@@ -29,16 +29,24 @@ export class RegisterFormComponent implements OnInit {
         date: ['', [Validators.required, this.customvalidateService.AgeValidator(18)]],
         term: [false, [Validators.requiredTrue]],
         gender: ['', [Validators.required]],
-        inputMale: [this.genders ? 'Male Input!': '', [Validators.required]],
-        inputFemale: [this.genders ? 'Female Input!' : '', [Validators.required]]
+        inputMale: ['Male Input', [Validators.required]],
+        inputFemale: ['Female Input' , [Validators.required]]
+
       },
       {
         validators: this.customvalidateService.MatchingPassword('password', 'confirmpassword'),
       },
     )
     this.registerForm.get('gender')?.valueChanges.subscribe((data: Gender) => {
-      this.allowDisplayMale = data === 0;
-      this.allowDisplayFemale = data === 1;
+      if(this.allowDisplayMale = data === 0) {
+        this.registerForm.get('inputFemale')?.disable();
+        this.registerForm.get('inputMale')?.enable();
+      }
+      if(this.allowDisplayFemale = data === 1) {
+        this.registerForm.get('inputMale')?.disable();
+        this.registerForm.get('inputFemale')?.enable();
+      }
+      console.log(data)
     })
   }
 
