@@ -1,0 +1,99 @@
+<div class="columns">
+    <div class="column">
+        <div class="container mt-3">
+            <form class="box" [formGroup]="registerForm" (ngSubmit)="submitData()">
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Enter Username" name="username"
+                            formControlName="username">
+                    </div>
+                    <div style="color:red" class="control mt-1" *ngIf="f['username'].invalid &&  f['username'].touched">
+                        <span *ngIf="f['username'].errors?.['required']">Username is required</span>
+                        <span *ngIf="f['username'].errors?.['pattern']">Special charaters are not allowed!</span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="********" formControlName="password">
+                    </div>
+                    <div style="color:red" class="control mt-1" *ngIf="f['password'].invalid &&  f['password'].touched">
+                        <span *ngIf="f['password'].errors?.['required']">Password is required</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Confirm Password</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="********" name="confirmpassword"
+                            formControlName="confirmpassword">
+                    </div>
+                    <div style="color:red" class="control mt-1"
+                        *ngIf="f['confirmpassword'].invalid &&  f['confirmpassword'].touched">
+                        <span *ngIf="f['confirmpassword'].errors?.['required']">Confirm Password is required</span>
+                        <span *ngIf="f['confirmpassword'].errors?.['MatchingPassword']">Confirm Password Did Not
+                            Match</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Date Of Birth</label>
+                    <div class="control">
+                        <input class="input" type="date" name="date" formControlName="date">
+                    </div>
+                    <div style="color:red" class="control mt-1" *ngIf="f['date'].invalid &&  f['date'].touched">
+                        <span *ngIf="f['date'].errors?.['required']">Date is required</span>
+                        <span *ngIf="f['date'].errors?.['younger']">You need to be older than 18 years old</span>
+
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Gender</label>
+                    <div class="select">
+                        <select type="input" formControlName="gender">
+                            <option value="">Pick your gender</option>
+                            <option *ngFor="let gender of genders" [ngValue]="gender">{{gender === 0 ? 'Male' : 'Female'}}
+                            </option>
+                        </select>
+                    </div>
+                    <div style="color:red" class="control mt-1" *ngIf="f['gender'].invalid && f['gender'].touched">
+                        <span *ngIf="f['gender'].errors?.['required']">Gender is required</span>
+                    </div>
+                </div>
+                <div *ngIf="allowDisplayMale" class="field">
+                    <label class="label">Male Input</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Enter Username" name="inputMale"
+                            formControlName="inputMale">
+                    </div>
+                    <div style="color:red" class="control mt-1"
+                        *ngIf="f['inputMale'].invalid &&  f['inputMale'].touched">
+                        <span *ngIf="f['inputMale'].errors?.['required']">Field is required</span>
+                    </div>
+                </div>
+                <div *ngIf="allowDisplayFemale" class="field">
+                    <label class="label">Female Input</label>
+                    <div class="control">
+                        <input class="input" type="inputFemale" placeholder="Enter Username" name="inputFemale"
+                            formControlName="inputFemale">
+                    </div>
+                    <div style="color:red" class="control mt-1"
+                        *ngIf="f['inputFemale'].invalid &&  f['inputFemale'].touched">
+                        <span *ngIf="f['inputFemale'].errors?.['required']">Field is required</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="checkbox">
+                        <input type="checkbox" name="term" formControlName="term">
+                        I agree to the terms and conditions
+                    </label>
+                    <div style="color:red" class="control mt-1" *ngIf="f['term'].invalid &&  f['term'].touched">
+                        <span *ngIf="f['term'].errors?.['required']">Accept Terms & Conditions is required</span>
+                    </div>
+                </div>
+                <button class="button is-primary mt-3" [disabled]="registerForm.invalid ">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+</div>
